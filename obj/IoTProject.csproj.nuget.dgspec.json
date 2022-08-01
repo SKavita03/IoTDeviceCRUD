@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\IoTtraining\\IoTProject\\IoTProject.csproj": {}
+  },
+  "projects": {
+    "C:\\IoTtraining\\IoTProject\\IoTProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\IoTtraining\\IoTProject\\IoTProject.csproj",
+        "projectName": "IoTProject",
+        "projectPath": "C:\\IoTtraining\\IoTProject\\IoTProject.csproj",
+        "packagesPath": "C:\\Users\\M1071620\\.nuget\\packages\\",
+        "outputPath": "C:\\IoTtraining\\IoTProject\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\M1071620\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Azure.Devices": {
+              "target": "Package",
+              "version": "[1.37.1, )"
+            },
+            "Microsoft.Azure.Devices.Client": {
+              "target": "Package",
+              "version": "[1.41.0, )"
+            },
+            "Microsoft.Azure.Devices.Shared": {
+              "target": "Package",
+              "version": "[1.30.1, )"
+            },
+            "Microsoft.Azure.ServiceBus": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

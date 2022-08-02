@@ -10,7 +10,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
 
-  dockerRegistryServiceConnection: 'kavitadockerservice'
+  dockerRegistryServiceConnection: 'testdocker'
 
   imageRepository: 'containerkub'
 

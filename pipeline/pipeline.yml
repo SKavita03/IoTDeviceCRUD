@@ -4,54 +4,68 @@ trigger:
 
     include:
 
-      - main
+      - kuberneteproject
 
-pool:
+variables:
 
-  vmImage: 'ubuntu-latest'
+  # Container registry service connection established during pipeline creation
 
-steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '6.0.x'
+  dockerRegistryServiceConnection: 'kavitadockerservice'
+
+  imageRepository: 'containerkub'
+
+  containerRegistry: 'prdctmntc.azurecr.io'
+
+  dockeruser: 'prdctmntc'
+
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+
+  tag: '$(Build.BuildId)'
+
+  vmImage: ubuntu-latest
+
+stages:
+
+- stage: Build
+
+  displayName: Build and push stage
+
+  jobs:
+
+  - job: Build
+
+    displayName: Build
+
+    pool:
+
+      vmImage: $(vmImage)
+
+    steps:
+
+    
+
+    - task: Docker@2
+
+      displayName: Build and push an image to container registry
+
+      inputs:
+
+        command: buildAndPush
+
+        repository: $(imageRepository)
+
+        dockerfile: $(dockerfilePath)
+
+        containerRegistry: $(dockerRegistryServiceConnection)
+
+        tags: |
+
+          latest,$(tag)
 
   
+    - task: PublishPipelineArtifact@1
 
-- task: DotNetCoreCLI@2
-
-  inputs:
-
-    command: 'restore'
-
-    projects: '**/*.csproj'
-
-- task: DotNetCoreCLI@2
-
-  inputs:
-
-    command: 'build'
-
-    arguments: '--configuration $(BuildConfiguration)'
-
-  displayName: 'dotnet build $(BuildConfiguration)'
-
-- task: DotNetCoreCLI@2
-
-  inputs:
-
-    command: publish
-
-    publishWebProjects: True
-
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-
-    zipAfterPublish: True
-
-- task: PublishPipelineArtifact@1
-
-  inputs:
-
-    targetPath: '$(Build.ArtifactStagingDirectory)' 
-
-    artifactName: 'kavitaartifact'
+      inputs:
+         targetPath: '$(Pipeline.Workspace)'
+         artifact: 'artifactkub'
+         publishLocation: 'pipeline'

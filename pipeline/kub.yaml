@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: kubnamekavita
+
+  namespace: kubnamespacekavita
+
+  labels:
+
+    app: kubnamekavita
+
+spec:
+
+  replicas: 1
+
+  selector:
+
+    matchLabels:
+
+      app: kubnamekavita
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: kubnamekavita
+
+    spec:
+
+      containers:
+
+        - name: containerkub
+
+          image: prdctmntc.azurecr.io/containerkub:#{Release.Artifacts.artifactkub.BuildId}#
+
+     
+
+          imagePullPolicy: Always
+
+          ports:
+
+            - containerPort: 5000
+
+
+      imagePullSecrets:
+
+        - name: azsecretimage
+
+---
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: kubnamekavita
+
+spec:
+
+  type: LoadBalancer
+
+  ports:
+
+    - name: http
+
+      port: 5000
+
+
+  selector:
+
+    app: kubnamekavita
